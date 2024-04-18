@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-countries-management-schema
+      author: k.pradzed
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS countries_management;

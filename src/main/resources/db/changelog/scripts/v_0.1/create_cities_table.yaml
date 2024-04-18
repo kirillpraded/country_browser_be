@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-cities_table
+      author: k.pradzed
+      changes:
+        - createTable:
+            schemaName: countries_management
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValue: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: cities-foreign-key
+      author:  k.pradzed
+      changes:
+        - addForeignKeyConstraint:
+            baseTableSchemaName: countries_management
+            baseTableName: cities
+            baseColumnNames: country_id
+            constraintName: foreign_key_country_id
+            referencedTableSchemaName: countries_management
+            referencedTableName: countries
+            referencedColumnNames: id
+

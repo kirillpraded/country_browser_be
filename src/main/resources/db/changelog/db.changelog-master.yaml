@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/scripts/v_0.1/create_schema.yaml
+  - include:
+      file: db/changelog/scripts/v_0.1/create_countries_table.yaml
+  - include:
+      file: db/changelog/scripts/v_0.1/create_cities_table.yaml
+  - include:
+      file: db/changelog/scripts/v_0.1/create_user_table.yaml
