@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/scripts/v_0.1/create_cities_table.yaml
   - include:
       file: db/changelog/scripts/v_0.1/create_user_table.yaml
+  - include:
+      file: db/changelog/scripts/v_0.1/add_image_url_cities.yaml

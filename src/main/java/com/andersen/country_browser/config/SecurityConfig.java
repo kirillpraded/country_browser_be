@@ -1,5 +1,6 @@
 package com.andersen.country_browser.config;
 
+import com.andersen.country_browser.model.enums.Role;
 import com.andersen.country_browser.service.impl.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,9 +38,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/cities").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/cities/country/**").permitAll()
-
-//            our private endpoints
-                        .anyRequest().authenticated()).authenticationManager(authenticationManager).build();
+                        .requestMatchers(HttpMethod.PUT, "api/v1/cities/update").hasRole(String.valueOf(Role.EDITOR))
+                ).authenticationManager(authenticationManager).build();
     }
 
     @Bean

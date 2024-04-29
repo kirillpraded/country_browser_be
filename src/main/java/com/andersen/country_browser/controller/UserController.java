@@ -10,15 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@CrossOrigin("http://localhost:4200")
+
 public class UserController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<SignInResponse> login(@Valid @RequestBody SignUpRequest request) {
+    public ResponseEntity<SignInResponse> login(@Valid @RequestBody SignInRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
         String token = JwtProvider.generateToken(request.email());
         return ResponseEntity.ok(new SignInResponse(request.email(), token));

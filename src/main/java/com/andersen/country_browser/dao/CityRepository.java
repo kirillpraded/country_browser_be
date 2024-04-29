@@ -9,11 +9,21 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, UUID>, JpaSpecificationExecutor<CityEntity> {
 
-    List<CityEntity> findCityEntitiesByCountry(CountryEntity country);
-    Page<CityEntity> findCityEntitiesByName(String name, Pageable pageable);
+    List<CityEntity> findCityEntitiesByCountryOrderById(CountryEntity country);
+    Page<CityEntity> findCityEntitiesByNameOrderById(String name, Pageable pageable);
+
+    Page<CityEntity> findAllByOrderById(Pageable pageable);
+
+    Page<CityEntity> findAllByNameContainsOrderById(Pageable pageable, String name);
+    Page<CityEntity> findAllByNameContainsAndCountryInOrderById(Pageable pageable, String name, List<CountryEntity> countries);
+    Page<CityEntity> findAllByCountryInOrderById(Pageable pageable, List<CountryEntity> countries);
+
+
+    Optional<CityEntity> findCityEntityById(UUID id);
 }

@@ -30,6 +30,10 @@ public class CityEntity extends AbstractEntity {
     @Size(max = 50)
     private String name;
 
+    @Column(name = "image_url")
+    @Size(max = 256)
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     @ToString.Exclude

@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-image-url-column
+      author: k.pradzed
+      changes:
+        - addColumn:
+            schemaName: countries_management
+            tableName: cities
+            columns:
+              - column:
+                  name: image_url
+                  type: varchar(256)
